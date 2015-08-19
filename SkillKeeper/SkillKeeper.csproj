@@ -91,6 +91,8 @@
     <Compile Include="ConfirmSave.Designer.cs">
       <DependentUpon>ConfirmSave.cs</DependentUpon>
     </Compile>
+    <Compile Include="EloCalculator.cs" />
+    <Compile Include="EloRating.cs" />
     <Compile Include="SKChallongeImporter.cs">
       <SubType>Form</SubType>
     </Compile>

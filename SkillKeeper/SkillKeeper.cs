@@ -157,27 +157,34 @@ namespace SkillKeeper
                 }
             }
 
-            Player p1s = new Player(1);
-            Player p2s = new Player(2);
-            Rating p1r = new Rating(p1.Mu, p1.Sigma);
-            Rating p2r = new Rating(p2.Mu, p2.Sigma);
-            Team t1 = new Team(p1s, p1r);
-            Team t2 = new Team(p2s, p2r);
+            // Player p1s = new Player(1);
+            // Player p2s = new Player(2);
+            //Rating p1r = new Rating(p1.Mu, p1.Sigma);
+            //Rating p2r = new Rating(p2.Mu, p2.Sigma);
+            //Team t1 = new Team(p1s, p1r);
+            //Team t2 = new Team(p2s, p2r);
 
-            IDictionary<Player, Rating> newRatings = null;
+            //IDictionary<Player, Rating> newRatings = null;
 
-            if(winner == 0)
-                newRatings = TrueSkillCalculator.CalculateNewRatings(GameInfo.DefaultGameInfo, Teams.Concat(t1, t2), 1, 1);
-            else if(winner == 1)
-                newRatings = TrueSkillCalculator.CalculateNewRatings(GameInfo.DefaultGameInfo, Teams.Concat(t1, t2), 1, 2);
-            else if(winner == 2)
-                newRatings = TrueSkillCalculator.CalculateNewRatings(GameInfo.DefaultGameInfo, Teams.Concat(t1, t2), 2, 1);
 
-            p1.Mu = newRatings[p1s].Mean;
-            p1.Sigma = newRatings[p1s].StandardDeviation;
-            p2.Mu = newRatings[p2s].Mean;
-            p2.Sigma = newRatings[p2s].StandardDeviation;
+            Tuple<EloRating, EloRating> ratings = EloCalculator.CalculateElo(p1, p2, winner);
 
+            //if(winner == 0)
+            //newRatings = TrueSkillCalculator.CalculateNewRatings(GameInfo.DefaultGameInfo, Teams.Concat(t1, t2), 1, 1);
+            //else if(winner == 1)
+            //newRatings = TrueSkillCalculator.CalculateNewRatings(GameInfo.DefaultGameInfo, Teams.Concat(t1, t2), 1, 2);
+            //else if(winner == 2)
+            //newRatings = TrueSkillCalculator.CalculateNewRatings(GameInfo.DefaultGameInfo, Teams.Concat(t1, t2), 2, 1);
+
+            //p1.Mu = newRatings[p1s].Mean;
+            //p1.Sigma = newRatings[p1s].StandardDeviation;
+            //p2.Mu = newRatings[p2s].Mean;
+            //p2.Sigma = newRatings[p2s].StandardDeviation;
+
+            p1.Elo = ratings.Item1.Elo;
+            p2.Elo = ratings.Item2.Elo;
+
+            /*
             foreach (Person person in playerList)
             {
                 if (person.Name == player1Selector.Text)
@@ -203,7 +210,7 @@ namespace SkillKeeper
                         person.Wins++;
                 }
             }
-
+            */
             requireSave = true;
 
             refreshScoreBoxes();
