@@ -9,8 +9,8 @@ namespace SkillKeeper
     public class Person
     {
         private String team = "", name = "", characters = "";
-        private UInt32 wins = 0, losses = 0, draws = 0, decayDays = 0, decayMonths = 0, matches = 0;
-        private Double mu, sigma, k = 800, elo = 1500;
+        private UInt32 wins = 0, losses = 0, draws = 0, decayDays = 0, decayMonths = 0;
+        private Double mu, sigma;
         private List<String> alts = new List<String>();
         private DateTime lastMatch = DateTime.FromBinary(0);
         private Double multiplier = 200;
@@ -71,12 +71,6 @@ namespace SkillKeeper
             set { decayMonths = value; }
         }
 
-        public UInt32 Matches
-        {
-            get { return matches; }
-            set { matches = value; }
-        }
-
         public Double Mu
         {
             get { return mu; }
@@ -89,23 +83,13 @@ namespace SkillKeeper
             set { sigma = value; }
         }
 
-        public Double K
-        {
-            get { return k; }
-            set { k = value; }
-        }
-
-        public Double Elo
-        {
-            get { return elo; }
-            set { elo = value; }
-        }
-
         public Int32 Score
         {
             get
             {
-                return (int)Elo;
+                if ((mu - sigma * 3) < 0)
+                    return 0;
+                return (Int32)((mu - sigma * 3) * multiplier);
             }
         }
 

@@ -180,12 +180,6 @@ namespace SkillKeeper
 
                     IDictionary<Player, Rating> newRatings = null;
 
-                    Tuple<EloRating, EloRating> ratings = EloCalculator.CalculateElo(p1, p2, match.Winner);
-
-                    p1.Elo = ratings.Item1.Elo;
-                    p2.Elo = ratings.Item2.Elo;
-
-                    /*
                     if (match.Winner == 0)
                         newRatings = TrueSkillCalculator.CalculateNewRatings(GameInfo.DefaultGameInfo, Teams.Concat(t1, t2), 1, 1);
                     else if (match.Winner == 1)
@@ -197,8 +191,6 @@ namespace SkillKeeper
                     p1.Sigma = newRatings[p1s].StandardDeviation;
                     p2.Mu = newRatings[p2s].Mean;
                     p2.Sigma = newRatings[p2s].StandardDeviation;
-                    */
-
 
                     match.P1Score2 = p1.Score;
                     match.P2Score2 = p2.Score;
@@ -208,7 +200,6 @@ namespace SkillKeeper
                     if (latestMatch < match.Timestamp)
                         latestMatch = match.Timestamp;
 
-                    /*
                     if (match.Winner == 0)
                     {
                         p1.Draws++;
@@ -224,7 +215,6 @@ namespace SkillKeeper
                         p1.Losses++;
                         p2.Wins++;
                     }
-                    */
                 }
                 else break;
             }
