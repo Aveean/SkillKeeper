@@ -9,7 +9,7 @@ namespace SkillKeeper
 {
     static class EloCalculator
     {
-        public static Tuple<EloRating, EloRating> CalculateElo(Person p1, Person p2, int winnerIndex, Double startingK = 800, Double minimumK = 32)
+        public static Tuple<EloRating, EloRating> CalculateElo (Person p1, Person p2, int winnerIndex, Double startingK = 800)
         {
             p1.Matches += 1;
             p2.Matches += 1;
@@ -19,10 +19,6 @@ namespace SkillKeeper
             double Eb = 1 / (1 + Math.Pow(10, ((p1.Elo - p2.Elo) / 400)));
             p1.K = startingK / p1.Matches;
             p2.K = startingK / p2.Matches;
-            if (p1.K < minimumK)
-                p1.K = minimumK;
-            if (p2.K < minimumK)
-                p2.K = minimumK;
             if (winnerIndex == 1)
             {
                 p1.Wins += 1;
