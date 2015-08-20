@@ -83,6 +83,11 @@ namespace SkillKeeper
             set { sigma = value; }
         }
 
+        public Double SigmaShort
+        {
+            get { return Math.Round(sigma, 2); }
+        }
+
         public Int32 Score
         {
             get
@@ -114,7 +119,7 @@ namespace SkillKeeper
             get
             {
                 String temp = "";
-                foreach(String alt in alts) {
+                foreach (String alt in alts) {
                     temp += alt + ";";
                 }
                 if (temp.Length > 0)
@@ -139,6 +144,11 @@ namespace SkillKeeper
         {
             get { return lastMatch; }
             set { lastMatch = value; }
+        }
+
+        public string LastMatchVisual
+        {
+            get { return lastMatch.ToShortDateString(); }
         }
 
         public Double Multiplier

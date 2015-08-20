@@ -134,6 +134,7 @@
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Uncertainty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.totalGamesDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.winPercentDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -1187,6 +1188,7 @@
             this.dataGridViewTextBoxColumn4,
             this.dataGridViewTextBoxColumn5,
             this.dataGridViewTextBoxColumn6,
+            this.Uncertainty,
             this.totalGamesDataGridViewTextBoxColumn,
             this.winPercentDataGridViewTextBoxColumn,
             this.dataGridViewTextBoxColumn7,
@@ -1254,6 +1256,15 @@
             this.dataGridViewTextBoxColumn6.ReadOnly = true;
             this.dataGridViewTextBoxColumn6.Width = 60;
             // 
+            // Uncertainty
+            // 
+            this.Uncertainty.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Uncertainty.DataPropertyName = "SigmaShort";
+            this.Uncertainty.HeaderText = "Uncertainty";
+            this.Uncertainty.Name = "Sigma";
+            this.Uncertainty.ReadOnly = true;
+            this.Uncertainty.Width = 83;
+            // 
             // totalGamesDataGridViewTextBoxColumn
             // 
             this.totalGamesDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
@@ -1284,7 +1295,7 @@
             // LastMatch
             // 
             this.LastMatch.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.LastMatch.DataPropertyName = "LastMatch";
+            this.LastMatch.DataPropertyName = "LastMatchVisual";
             this.LastMatch.HeaderText = "Last Match";
             this.LastMatch.Name = "LastMatch";
             this.LastMatch.ReadOnly = true;
@@ -1692,6 +1703,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Uncertainty;
         private System.Windows.Forms.DataGridViewTextBoxColumn totalGamesDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn winPercentDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;

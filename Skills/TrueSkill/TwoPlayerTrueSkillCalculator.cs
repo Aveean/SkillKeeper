@@ -15,7 +15,7 @@ namespace Moserware.Skills.TrueSkill
     public class TwoPlayerTrueSkillCalculator : SkillCalculator
     {
         public TwoPlayerTrueSkillCalculator()
-            : base(SupportedOptions.None, Range<TeamsRange>.Exactly(2), Range<PlayersRange>.Exactly(1))
+            : base(SupportedOptions.PartialUpdate, Range<TeamsRange>.Exactly(2), Range<PlayersRange>.Exactly(1))
         {
         }
 
