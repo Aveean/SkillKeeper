@@ -31,7 +31,6 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SKChallongeImporter));
             this.eventSelector = new System.Windows.Forms.ComboBox();
-            this.tournamentTypeChanger = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.importPlayerList = new System.Windows.Forms.DataGridView();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -54,16 +53,6 @@
             this.eventSelector.Size = new System.Drawing.Size(389, 21);
             this.eventSelector.TabIndex = 0;
             this.eventSelector.SelectedIndexChanged += new System.EventHandler(this.eventSelector_SelectedIndexChanged);
-            // 
-            // tournamentTypeChanger
-            // 
-            this.tournamentTypeChanger.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.tournamentTypeChanger.FormattingEnabled = true;
-            this.tournamentTypeChanger.Location = new System.Drawing.Point(295, 15);
-            this.tournamentTypeChanger.Name = "tournamentTypeChanger";
-            this.tournamentTypeChanger.Size = new System.Drawing.Size(389, 21);
-            this.tournamentTypeChanger.TabIndex = 0;
-            this.tournamentTypeChanger.SelectedIndexChanged += new System.EventHandler(this.tournamentTypeChanger_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -162,7 +151,6 @@
             this.Controls.Add(this.importPlayerList);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.eventSelector);
-            this.Controls.Add(this.tournamentTypeChanger);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SKChallongeImporter";
@@ -177,7 +165,6 @@
         #endregion
 
         private System.Windows.Forms.ComboBox eventSelector;
-        private System.Windows.Forms.ComboBox tournamentTypeChanger;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView importPlayerList;
         private System.Windows.Forms.BindingSource importPlayerBindingSource;

@@ -24,13 +24,6 @@ namespace SkillKeeper
         private List<ImportPlayer> challongePlayerList = new List<ImportPlayer>();
         private List<String> eventList = new List<String>();
         private String tournamentName = "";
-        private TournamentType tournamentType = TournamentType.Monthly;
-
-        enum TournamentType
-        {
-            Monthly,
-            Weekly
-        }
 
         private List<String> addAlts = new List<String>();
 
@@ -68,11 +61,6 @@ namespace SkillKeeper
             //Set event selector
             eventSelector.DataSource = completedTournaments;
             eventSelector.DisplayMember = "Name";
-
-            List<TournamentType> tournamentTypeList = new List<TournamentType>();
-            tournamentTypeList.Add(TournamentType.Monthly);
-            tournamentTypeList.Add(TournamentType.Weekly);
-            tournamentTypeChanger.DataSource = tournamentTypeList;
         }
 
         // Update the list of players found in the selected event.
@@ -151,18 +139,6 @@ namespace SkillKeeper
             curTourney = (Tournament)cbox.SelectedItem;
 
             updatePlayerList();
-        }
-
-        // Change the tournament type when the list is selected
-        private void tournamentTypeChanger_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //Get combo box from sender
-            var cbox = (ComboBox)sender;
-
-            //Fetch selected tourney
-            TournamentType curOption = (TournamentType)cbox.SelectedItem;
-
-            this.tournamentType = curOption;
         }
 
         // Cancel

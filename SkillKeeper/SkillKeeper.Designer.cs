@@ -1362,7 +1362,7 @@
             this.label37.Name = "label37";
             this.label37.Size = new System.Drawing.Size(133, 13);
             this.label37.TabIndex = 8;
-            this.label37.Text = "Minimum Tournaments to Rank";
+            this.label37.Text = "Minimum Matches to Rank";
             // 
             // settingsDecayNever
             // 
