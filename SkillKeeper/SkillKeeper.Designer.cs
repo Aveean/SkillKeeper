@@ -1182,16 +1182,16 @@
             this.leaderBoardGrid.AutoGenerateColumns = false;
             this.leaderBoardGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.leaderBoardGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn2,
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn3,
-            this.dataGridViewTextBoxColumn4,
-            this.dataGridViewTextBoxColumn5,
-            this.dataGridViewTextBoxColumn6,
+            //this.dataGridViewTextBoxColumn2, // Team
+            this.dataGridViewTextBoxColumn1, // Name
+            this.dataGridViewTextBoxColumn3, // Characters
+            this.totalGamesDataGridViewTextBoxColumn, // Total Played
+            this.dataGridViewTextBoxColumn4, // Wins
+            this.dataGridViewTextBoxColumn5, // Losses
+            this.dataGridViewTextBoxColumn6, // Draws
+            this.winPercentDataGridViewTextBoxColumn, // Win %
+            this.dataGridViewTextBoxColumn7, // Score
             this.Uncertainty,
-            this.totalGamesDataGridViewTextBoxColumn,
-            this.winPercentDataGridViewTextBoxColumn,
-            this.dataGridViewTextBoxColumn7,
             this.LastMatch});
             this.leaderBoardGrid.DataSource = this.personBindingSource;
             this.leaderBoardGrid.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
@@ -1206,7 +1206,7 @@
             // 
             this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.dataGridViewTextBoxColumn2.DataPropertyName = "Team";
-            this.dataGridViewTextBoxColumn2.HeaderText = "Team";
+            this.dataGridViewTextBoxColumn2.HeaderText = "Region";
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             this.dataGridViewTextBoxColumn2.ReadOnly = true;
             this.dataGridViewTextBoxColumn2.Width = 57;

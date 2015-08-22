@@ -13,6 +13,7 @@ namespace Fizzi.Libraries.ChallongeApiWrapper
 
         public string ApiKey { get; private set; }
         public string Subdomain { get; private set; }
+        public string TournamentID { get; private set; }
 
         public ChallongePortal(string apiKey) : this(apiKey, null) { }
 
@@ -20,7 +21,10 @@ namespace Fizzi.Libraries.ChallongeApiWrapper
         {
             client = new RestClient(@"https://api.challonge.com/v1/");
             ApiKey = apiKey;
-            Subdomain = subdomain;
+                if (subdomain.Length > 8 && subdomain.Substring(0, 7) == "NOHOST_")
+                    TournamentID = subdomain.Substring(7);
+            else
+                Subdomain = subdomain;
         }
 
         private void throwOnError(IRestResponse response)
@@ -34,18 +38,33 @@ namespace Fizzi.Libraries.ChallongeApiWrapper
         public IEnumerable<Tournament> GetTournaments()
         {
             var request = new RestRequest("tournaments.xml", Method.GET);
-            request.AddParameter("api_key", ApiKey);
-            if (!string.IsNullOrWhiteSpace(Subdomain)) request.AddParameter("subdomain", Subdomain);
 
-            var response = client.Execute<List<Tournament>>(request);
-            throwOnError(response);
+            if (!string.IsNullOrWhiteSpace(Subdomain))
+            {
+                request.AddParameter("subdomain", Subdomain);
+                request.AddParameter("api_key", ApiKey);
+                var response = client.Execute<List<Tournament>>(request);
+                throwOnError(response);
+                return response.Data;
+            }
+            else
+            {
+                request = new RestRequest(string.Format("tournaments/{0}.xml", TournamentID), Method.GET);
+                request.AddParameter("api_key", ApiKey);
 
-            return response.Data;
+                var response1 = client.Execute<Tournament>(request);
+                List<Tournament> fakeList = new List<Tournament>();
+                fakeList.Add(response1.Data);
+                throwOnError(response1);
+
+                return fakeList;
+            }
         }
 
         public Tournament ShowTournament(int tournamentId)
         {
-            var request = new RestRequest(string.Format("tournaments/{0}.xml", tournamentId), Method.GET);
+            RestRequest request;
+            request = new RestRequest(string.Format("tournaments/{0}.xml", tournamentId), Method.GET);
             request.AddParameter("api_key", ApiKey);
 
             var response = client.Execute<Tournament>(request);
