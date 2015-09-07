@@ -181,11 +181,11 @@ namespace SkillKeeper
                     IDictionary<Player, Rating> newRatings = null;
 
                     if (match.Winner == 0)
-                        newRatings = GlickoCalculator.CalculateNewRatings(GameInfo.DefaultGameInfo, Teams.Concat(t1, t2), 1, 1);
+                        newRatings = TrueSkillCalculator.CalculateNewRatings(GameInfo.DefaultGameInfo, Teams.Concat(t1, t2), 1, 1);
                     else if (match.Winner == 1)
-                        newRatings = GlickoCalculator.CalculateNewRatings(GameInfo.DefaultGameInfo, Teams.Concat(t1, t2), 1, 2);
+                        newRatings = TrueSkillCalculator.CalculateNewRatings(GameInfo.DefaultGameInfo, Teams.Concat(t1, t2), 1, 2);
                     else if (match.Winner == 2)
-                        newRatings = GlickoCalculator.CalculateNewRatings(GameInfo.DefaultGameInfo, Teams.Concat(t1, t2), 2, 1);
+                        newRatings = TrueSkillCalculator.CalculateNewRatings(GameInfo.DefaultGameInfo, Teams.Concat(t1, t2), 2, 1);
 
                     p1.Mu = newRatings[p1s].Mean;
                     p1.Sigma = newRatings[p1s].StandardDeviation;
