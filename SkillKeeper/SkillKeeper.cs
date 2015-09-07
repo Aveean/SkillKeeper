@@ -45,7 +45,7 @@ namespace SkillKeeper
             manualDatePicker.Value = DateTime.Today;
             historyDatePicker.Value = DateTime.Today;
             historyMoveDatePicker.Value = DateTime.Today;
-            leaderboardDatePicker.Value = DateTime.Today;
+            leaderboardDatePicker.Value = DateTime.Today; 
             personBindingSource.DataSource = new BindingList<Person>(leaderBoardList);
             openWorldDialog.Reset();
             exportCSVDialog.Reset();
@@ -431,6 +431,11 @@ namespace SkillKeeper
                     match.Player1 = m.Attribute("Player1").Value;
                     match.Player2 = m.Attribute("Player2").Value;
                     match.Winner = UInt16.Parse(m.Attribute("Winner").Value);
+                    if (m.Attribute("Weight") != null) {
+                        match.Weight = Double.Parse(m.Attribute("Weight").Value);
+                    } else {
+                        match.Weight = 1.0;
+                    }
 
                     matchList.Add(match);
 
@@ -514,7 +519,8 @@ namespace SkillKeeper
                             new XAttribute("Description", match.Description),
                             new XAttribute("Player1", match.Player1),
                             new XAttribute("Player2", match.Player2),
-                            new XAttribute("Winner", match.Winner)
+                            new XAttribute("Winner", match.Winner),
+                            new XAttribute("Weight", match.Weight)
                         ))
                 ));
                 xEle.Save(saveWorldDialog.FileName);
@@ -1091,9 +1097,10 @@ namespace SkillKeeper
         {
             if (historyGridView.SelectedRows.Count > 0)
             {
-                historyDatePicker.Value = DateTime.Parse(historyGridView.SelectedRows[0].Cells[4].Value.ToString());
+                historyDatePicker.Value = DateTime.Parse(historyGridView.SelectedRows[0].Cells[5].Value.ToString());
                 historyDeleteMatchButton.Enabled = true;
                 historyDeleteTournamentButton.Enabled = true;
+                changeTournamentWeight.Enabled = true;
                 if (historyDatePicker.Value != historyMoveDatePicker.Value)
                     historyMoveTourneyButton.Enabled = true;
             }
@@ -1101,6 +1108,7 @@ namespace SkillKeeper
             {
                 historyDeleteMatchButton.Enabled = false;
                 historyDeleteTournamentButton.Enabled = false;
+                changeTournamentWeight.Enabled = false;
             }
         }
 
@@ -1159,6 +1167,26 @@ namespace SkillKeeper
         private void historyDeleteMatchButton_Click(object sender, EventArgs e)
         {
             matchList.Remove((Match) historyGridView.SelectedRows[0].DataBoundItem);
+            matchList = matchList.OrderBy(s => s.Timestamp).ThenBy(s => s.Order).ToList();
+            Toolbox.recalcMatches(playerList, matchList, startMu, startSigma, multiplier, decay, decayValue);
+            requireSave = true;
+            buildHistory();
+        }
+
+        private void historyChangeTournamentWeightButtonClick(object sender, EventArgs e)
+        {
+            String tourneyName = historyGridView.SelectedRows[0].Cells[3].Value.ToString();
+            Double Weight = Double.Parse(historyGridView.SelectedRows[0].Cells[4].Value.ToString());
+
+            foreach (Match m in matchList)
+            {
+                if (m.Description == tourneyName)
+                {
+                    m.Weight = Weight;
+                }
+            }
+            
+ 
             matchList = matchList.OrderBy(s => s.Timestamp).ThenBy(s => s.Order).ToList();
             Toolbox.recalcMatches(playerList, matchList, startMu, startSigma, multiplier, decay, decayValue);
             requireSave = true;

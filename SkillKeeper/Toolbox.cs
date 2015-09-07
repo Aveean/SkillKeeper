@@ -171,8 +171,8 @@ namespace SkillKeeper
                     match.P1Score = p1.Score;
                     match.P2Score = p2.Score;
 
-                    Player p1s = new Player(1);
-                    Player p2s = new Player(2);
+                    Player p1s = new Player(1, match.Weight);
+                    Player p2s = new Player(2, match.Weight);
                     Rating p1r = new Rating(p1.Mu, p1.Sigma);
                     Rating p2r = new Rating(p2.Mu, p2.Sigma);
                     Team t1 = new Team(p1s, p1r);

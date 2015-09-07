@@ -15,6 +15,7 @@ namespace SkillKeeper
         private UInt16 winner = 0;
         private Int32 p1Score, p2Score, p1score2, p2score2;
         private String id = "000";
+        private Double weight = 1.0;
 
         public DateTime Timestamp
         {
@@ -81,5 +82,12 @@ namespace SkillKeeper
             get { return id; }
             set { id = value; }
         }
+
+        public Double Weight
+        {
+            get { return weight; }
+            set { weight = value; }
+        }
+
     }
 }
